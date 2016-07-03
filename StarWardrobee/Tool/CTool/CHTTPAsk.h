@@ -10,4 +10,8 @@
 
 @interface CHTTPAsk : NSObject
 
++ (void)netHTTPForMainTopScrollArray:(void(^)(NSArray *arr))block;
++ (void)netHttpForMAINTimeLimted:(void(^)(NSArray *arr))block;
++ (void)netHTTPForMainInternationWithUrl:(NSString *)urlStr :(void(^)(NSMutableArray *arr))block;
++ (NSArray *)GetUrl;
 @end

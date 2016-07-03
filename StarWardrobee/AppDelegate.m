@@ -68,7 +68,6 @@ typedef void(^block)(void);
         shopVC.tabBarItem.image = [UIImage imageNamed:@"bottom_shopping_icon@2x"];
         shopVC.tabBarItem.selectedImage = [UIImage imageNamed:@"bottom_shopping_icon_on@3x"];
         tabBarC.viewControllers = @[mainNAV,matchVC,communityVC,manVC,shopVC];
-        
         self.window.rootViewController = tabBarC;
     }];
     
