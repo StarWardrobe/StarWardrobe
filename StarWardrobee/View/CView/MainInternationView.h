@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 
 @interface MainInternationView : UIView
+
 - (void)createAllInternationViewWithArray:(NSMutableArray *)dataArray AndWithHeightFrom:(CGFloat)height;
 
 @end

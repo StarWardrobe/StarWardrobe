@@ -8,6 +8,7 @@
 
 #import "CHTTPAsk.h"
 #import "CMainHeaderModel.h"
+#import "CMainWaterFallModel.h"
 
 @implementation CHTTPAsk
 + (void)netHTTPForMainTopScrollArray:(void(^)(NSArray *arr))block {
@@ -56,7 +57,11 @@
     
 }
 + (NSArray *)GetUrl {
-    NSArray *urlDataArray = @[@"http://api-v2.mall.hichao.com/mall/region/new?region_id=1&gc=appstore&gf=iphone&gn=mxyc_ip&gv=6.6.3&gi=DA51E858-FC0D-4ACA-94C8-EC43CA9AC969&gs=640x1136&gos=8.4&access_token=",@"http://api-v2.mall.hichao.com/mall/region/new?region_id=2&gc=appstore&gf=iphone&gn=mxyc_ip&gv=6.6.3&gi=DA51E858-FC0D-4ACA-94C8-EC43CA9AC969&gs=640x1136&gos=8.4&access_token=",@"http://api-v2.mall.hichao.com/mall/region/new?region_id=3&gc=appstore&gf=iphone&gn=mxyc_ip&gv=6.6.3&gi=DA51E858-FC0D-4ACA-94C8-EC43CA9AC969&gs=640x1136&gos=8.4&access_token=",@"http://api-v2.mall.hichao.com/mall/region/new?region_id=4&gc=appstore&gf=iphone&gn=mxyc_ip&gv=6.6.3&gi=DA51E858-FC0D-4ACA-94C8-EC43CA9AC969&gs=640x1136&gos=8.4&access_token=",@"http://api-v2.mall.hichao.com/mall/region/new?region_id=5&gc=appstore&gf=iphone&gn=mxyc_ip&gv=6.6.3&gi=DA51E858-FC0D-4ACA-94C8-EC43CA9AC969&gs=640x1136&gos=8.4&access_token=",@"http://api-v2.mall.hichao.com/mall/region/new?region_id=6&gc=appstore&gf=iphone&gn=mxyc_ip&gv=6.6.3&gi=DA51E858-FC0D-4ACA-94C8-EC43CA9AC969&gs=640x1136&gos=8.4&access_token="];
+    NSMutableArray *urlDataArray = [NSMutableArray array];
+    for (int i = 1; i<7; i++) {
+        NSString *str = [NSString stringWithFormat:@"http://api-v2.mall.hichao.com/mall/region/new?region_id=%d&gc=appstore&gf=iphone&gn=mxyc_ip&gv=6.6.3&gi=DA51E858-FC0D-4ACA-94C8-EC43CA9AC969&gs=640x1136&gos=8.4&access_token=",i];
+        [urlDataArray addObject:str];
+    }
     return urlDataArray;
 }
 + (void)netHTTPForMainInternationWithUrl:(NSString *)urlStr :(void(^)(NSMutableArray *arr))block {
@@ -113,6 +118,36 @@
         }];
 }
 
++ (void)netHTTPForFootTableViewWithChoose:(NSInteger)number FallBackArr:(void(^)(NSMutableArray *arr))block {
+    NSArray *urlStr = @[@"http://api-v2.mall.hichao.com/sku/list?more_items=1&type=selection&flag=&gc=appstore&gf=iphone&gn=mxyc_ip&gv=6.6.3&gi=DA51E858-FC0D-4ACA-94C8-EC43CA9AC969&gs=640x1136&gos=8.4&access_token=",@"http://api-v2.mall.hichao.com/sku/list?more_items=1&type=selection&flag=&category_ids=38,33,34&gc=appstore&gf=iphone&gn=mxyc_ip&gv=6.6.3&gi=DA51E858-FC0D-4ACA-94C8-EC43CA9AC969&gs=640x1136&gos=8.4&access_token=6t8NoQYMw_NMtAl6aAtqVFwHEiV1Ve_1ENnI7aOs3KQ",@"http://api-v2.mall.hichao.com/sku/list?more_items=1&type=selection&flag=&category_ids=39,40&gc=appstore&gf=iphone&gn=mxyc_ip&gv=6.6.3&gi=DA51E858-FC0D-4ACA-94C8-EC43CA9AC969&gs=640x1136&gos=8.4&access_token=6t8NoQYMw_NMtAl6aAtqVFwHEiV1Ve_1ENnI7aOs3KQ",@"http://api-v2.mall.hichao.com/sku/list?more_items=1&type=selection&flag=&category_ids=49,45,48,46,44&gc=appstore&gf=iphone&gn=mxyc_ip&gv=6.6.3&gi=DA51E858-FC0D-4ACA-94C8-EC43CA9AC969&gs=640x1136&gos=8.4&access_token=6t8NoQYMw_NMtAl6aAtqVFwHEiV1Ve_1ENnI7aOs3KQ"];
+    NSMutableArray *array = [NSMutableArray array];
+    
+    [NetRequestClass netRequestGETWithRequestURL:urlStr[number] WithParameter:nil WithReturnValeuBlock:^(id responseObject, NSError *error) {
+        NSDictionary *dataDic = responseObject[@"data"];
+        NSArray *itemsArray = dataDic[@"items"];
+        for (NSDictionary *tempDic in itemsArray) {
+            CMainWaterFallModel *model = [CMainWaterFallModel new];
+            model.height = [tempDic[@"height"] integerValue];
+            model.width = [tempDic[@"width"] integerValue];
+            NSDictionary *comDic = tempDic[@"component"];
+            NSString *str = comDic[@"picUrl"];
+            NSArray *StrAr = [str componentsSeparatedByString:@"?"];
+            NSString *fistHttpStr = [NSString stringWithFormat:@"%@?",StrAr[0]];
+
+            model.picUrl = fistHttpStr;
+            
+            model.countryName = comDic[@"country"];
+            model.countryPicUrl = comDic[@"nationalFlag"];
+            model.OldPrice = [comDic[@"origin_price"] integerValue];
+            model.NewPrice = [comDic[@"price"] integerValue];
+            model.title = comDic[@"description"];
+            [array addObject:model];
+        }
+        if (block) {
+            block(array);
+        }
+    }];
+}
 
 
 @end

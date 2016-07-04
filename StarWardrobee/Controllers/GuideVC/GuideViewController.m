@@ -22,12 +22,12 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     
-    self.view.backgroundColor = [UIColor yellowColor];
+    self.view.backgroundColor = [UIColor cyanColor];
     
-    UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
-    button.bounds = CGRectMake(0, 0, 100, 44);
+    UIButton *button = [UIButton buttonWithType:UIButtonTypeSystem];
+    button.bounds = CGRectMake(0, 0, 200, 44);
     button.center = self.view.center;
-    [button setTitle:@"Enter" forState:UIControlStateNormal];
+    [button setTitle:@"欢迎进入明星衣橱" forState:UIControlStateNormal];
     
     [button addTarget:self action:@selector(enter:) forControlEvents:UIControlEventTouchUpInside];
     

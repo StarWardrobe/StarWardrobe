@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		042773DC1D29F37100028A5F /* CMainWaterFallModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 042773DB1D29F37100028A5F /* CMainWaterFallModel.m */; };
 		044440901D27C8C000C53BCD /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 0444408F1D27C8C000C53BCD /* main.m */; };
 		044440931D27C8C000C53BCD /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 044440921D27C8C000C53BCD /* AppDelegate.m */; };
 		044440991D27C8C000C53BCD /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 044440971D27C8C000C53BCD /* Main.storyboard */; };
@@ -1405,6 +1406,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		042773DA1D29F37100028A5F /* CMainWaterFallModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CMainWaterFallModel.h; sourceTree = "<group>"; };
+		042773DB1D29F37100028A5F /* CMainWaterFallModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CMainWaterFallModel.m; sourceTree = "<group>"; };
 		0444408B1D27C8C000C53BCD /* StarWardrobee.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = StarWardrobee.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0444408F1D27C8C000C53BCD /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		044440911D27C8C000C53BCD /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -2917,6 +2920,8 @@
 				04E7A1501D28F68D0023C55A /* CMainHeaderModel.m */,
 				04E7A1551D29352A0023C55A /* CMainInternationModel.h */,
 				04E7A1561D29352A0023C55A /* CMainInternationModel.m */,
+				042773DA1D29F37100028A5F /* CMainWaterFallModel.h */,
+				042773DB1D29F37100028A5F /* CMainWaterFallModel.m */,
 			);
 			path = CModel;
 			sourceTree = "<group>";
@@ -6007,6 +6012,7 @@
 				04EAD2161D28B32400F844D7 /* PreferenceViewController.m in Sources */,
 				04EAD21C1D28BD1200F844D7 /* GuideViewController.m in Sources */,
 				04EAD2281D28BD4E00F844D7 /* ShopViewController.m in Sources */,
+				042773DC1D29F37100028A5F /* CMainWaterFallModel.m in Sources */,
 				04EAD2251D28BD3F00F844D7 /* MatchViewController.m in Sources */,
 				04EAD20A1D28B26D00F844D7 /* ShopTableViewCell.m in Sources */,
 				044440901D27C8C000C53BCD /* main.m in Sources */,

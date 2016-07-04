@@ -9,24 +9,29 @@
 #import "MainViewController.h"
 #import "CMainHeaderModel.h"
 #import "MainInternationView.h"
+#import "MainFootTableViewCell.h"
+#import "CMainWaterFallModel.h"
 
 //枚举tag值
 typedef enum : NSUInteger {
     mainScrellViewTag = 100,
     headerScrellViewTag,
-    footScrellViewTag,
     TableViewLeft,
     TableViewRight,
+    buttonTag,
+    
 } mainVCTags;
 
 @interface MainViewController ()<UIScrollViewDelegate,UITableViewDataSource,UITableViewDelegate>
 {
+    UIView *buttonView;
     CGFloat _colHeight[2];
     UIScrollView *mainScreenScroll;
+    CGFloat NewHeight;
+    UILabel *labe;
 }
 @property(retain,nonatomic)NSMutableArray *dataArray;
 @property(retain,nonatomic)NSMutableArray *indexArray;
-@property(retain,nonatomic)NSMutableArray *footDTArray;
 
 @end
 
@@ -44,12 +49,6 @@ typedef enum : NSUInteger {
     }
     return _indexArray;
 }
-- (NSMutableArray *)footDTArray {
-    if (!_footDTArray) {
-        _footDTArray = @[].mutableCopy;
-    }
-    return _footDTArray;
-}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -60,13 +59,17 @@ typedef enum : NSUInteger {
     self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc]initWithImage:[UIImage imageNamed:@"bottom_head_sort@2x"] style:UIBarButtonItemStylePlain target:self action:@selector(Categor)];
     mainScreenScroll = [[UIScrollView alloc]init];
     mainScreenScroll.frame = kMainBounds;
+    mainScreenScroll.delegate = self;
+    mainScreenScroll.tag = mainScrellViewTag;
     [self.view addSubview:mainScreenScroll];
     [self createTopScrollView];
     [self createTimeLimit];
     [self createInternationView];
     
-    
-    mainScreenScroll.contentSize = CGSizeMake(kMainBoundsW, MAX(_colHeight[0], _colHeight[1]));
+    [self createTableViewFall];
+
+    [self getWaterFallDataWith:0];
+   
 }
 - (void)messag {
     NSLog(@"消息");
@@ -78,7 +81,7 @@ typedef enum : NSUInteger {
     [CHTTPAsk netHTTPForMainTopScrollArray:^(NSArray *arr) {
         UIScrollView *headerScrollView = [[UIScrollView alloc]init];
         headerScrollView.frame = CGRectMake(0, 0, kMainBoundsW, 250);
-//        NSLog(@"??????????????%f",_colHeight[0]);
+
         for (int i = 0; i<arr.count; i++) {
             CMainHeaderModel *model = arr[i];
             UIImageView *image = [[UIImageView alloc]initWithFrame:CGRectMake(kMainBoundsW*i, 0, kMainBoundsW, 250)];
@@ -123,11 +126,144 @@ typedef enum : NSUInteger {
     _colHeight[0] += ALLHeight;
     _colHeight[1] += ALLHeight;
     
+    NewHeight = 520+ALLHeight;
 }
 
+- (void)getWaterFallDataWith:(NSInteger)number {
+    
+    [CHTTPAsk netHTTPForFootTableViewWithChoose:number FallBackArr:^(NSMutableArray *arr) {
+        //数据初始化
+        [self.dataArray removeAllObjects];
+        [self.indexArray[0] removeAllObjects];
+        [self.indexArray[1] removeAllObjects];
+        _colHeight[0] = NewHeight;
+        _colHeight[1] = NewHeight;
+        
+        [self.dataArray addObjectsFromArray:arr];
+        //NSLog(@"%ld",self.dataArray.count);
+        if (self.dataArray.count == 0) {
+            return;
+        }
+        for (int i = 0; i<self.dataArray.count; i++) {
+            NSInteger index = _colHeight[0]<=_colHeight[1]?0:1;
+            CMainWaterFallModel *model =self.dataArray[i];
+            //记录最新高度
+            _colHeight[index] += model.cellHeight + 50;
+            //把i存入到index数组
+            [self.indexArray[index] addObject:@(i)];
+        }
+        
+        mainScreenScroll.contentSize = CGSizeMake(kMainBoundsW, MAX(_colHeight[0], _colHeight[1]));
+        
+        //刷新表
+        for (int i=0; i<2; i++) {
+            UITableView *table = (UITableView *)[mainScreenScroll viewWithTag:TableViewLeft + i];
+            [table reloadData];
+        }
+    }];
+}
 
+- (void)createTableViewFall {
+    NSArray *arr = @[@"今日上新",@"上装",@"裙装",@"裤装"];
+    buttonView = [UIView new];
+    buttonView.frame = CGRectMake(0, NewHeight, kMainBoundsW, 50);
+    [mainScreenScroll addSubview:buttonView];
+    for (int i = 0; i<4; i++) {
+        UIButton *button = [UIButton buttonWithType:UIButtonTypeSystem];
+        button.frame = CGRectMake(kMainBoundsW/4*i, 0, kMainBoundsW/4, 50);
+        [button setTitle:arr[i] forState:UIControlStateNormal];
+        [button setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+        [button setTitleColor:[UIColor redColor] forState:UIControlStateSelected];
+        button.tag = i+buttonTag;
+        [button addTarget:self action:@selector(chooseColoseSys:) forControlEvents:UIControlEventTouchUpInside];
+        [buttonView addSubview:button];
+    }
+    labe = [[UILabel alloc]initWithFrame:CGRectMake(0, NewHeight+50, kMainBoundsW/4, 3)];
+    labe.backgroundColor = [UIColor redColor];
+    [mainScreenScroll addSubview:labe];
+    for (int i=0; i<2; i++) {
+        UITableView *table = [[UITableView alloc]initWithFrame:CGRectMake(i*(kMainBoundsW/2), NewHeight+55, kMainBoundsW/2, kMainBoundsH-55) style:UITableViewStylePlain];
+        table.backgroundColor = [UIColor redColor];
+        table.delegate = self;
+        table.dataSource = self;
+        table.tag = i+TableViewLeft;
+        //scroll的滑动属性
+        table.scrollEnabled = NO;
+        
+        [mainScreenScroll addSubview:table];
+        //去掉莫名其妙的cell
+        table.tableFooterView = [UIView new];
+        [table registerClass:[MainFootTableViewCell class] forCellReuseIdentifier:@"cell"];
+    }
+}
+//button点击事件
+- (void)chooseColoseSys :(UIButton *)sender {
+    
+    [UIView animateWithDuration:0.3 animations:^{
+    labe.center = CGPointMake(sender.center.x, NewHeight+51);
+    } completion:^(BOOL finished) {
+        [self getWaterFallDataWith:sender.tag-buttonTag];
+        
+    }];
+}
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+    NSInteger index = tableView.tag-TableViewLeft;
+    NSArray *arr = self.indexArray[index];
+    if (arr.count!=0) {
+        return arr.count;
+    }
+    return 0;
+}
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+    NSInteger index = tableView.tag-TableViewLeft;
+    NSMutableArray *arr = self.indexArray[index];
+    if (arr.count!=0) {
+        //根据小数组中的index从大数组取出对应的model
+        NSNumber *number = arr[indexPath.row];
+        CMainWaterFallModel *model = self.dataArray[[number integerValue]];
+        if (model.cellHeight > 0) {
+            return model.cellHeight+50;
+        }
+    }
+    return 0;
+}
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    MainFootTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell" forIndexPath:indexPath];
+    //[cell setAllDefault];
+    NSMutableArray *arr = self.indexArray[tableView.tag-TableViewLeft];
+    if (arr.count != 0) {
+        NSNumber *num = arr[indexPath.row];
+        CMainWaterFallModel *model = self.dataArray[[num integerValue]];
+        cell.model = model;
+    }
+    
+    return cell;
+   
+}
 
-
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView {
+    if (scrollView.tag == mainScrellViewTag) {
+       
+        //找两个表
+        UITableView *left = (UITableView *)[mainScreenScroll viewWithTag:TableViewLeft];
+        UITableView *right = (UITableView *)[mainScreenScroll viewWithTag:TableViewRight];
+        if (scrollView.contentOffset.y < NewHeight) {
+            buttonView.center = CGPointMake(kMainBoundsW/2, NewHeight);
+            left.frame = CGRectMake(0, NewHeight+55, kMainBoundsW / 2 , kMainBoundsH);
+            right.frame = CGRectMake(kMainBoundsW / 2, NewHeight+55, kMainBoundsW / 2 , kMainBoundsH);
+            left.contentOffset = CGPointMake(0, 0);
+            right.contentOffset = CGPointMake(0, 0);
+        }else {
+            buttonView.center = CGPointMake(kMainBoundsW/2, scrollView.contentOffset.y+25+64);
+            left.center = CGPointMake(left.center.x, scrollView.contentOffset.y+kMainBoundsH/2);
+            right.center = CGPointMake(right.center.x, scrollView.contentOffset.y+kMainBoundsH/2);
+            CGPoint offset = scrollView.contentOffset;
+            offset.y -= NewHeight;
+            left.contentOffset = offset;
+            right.contentOffset = offset;
+        }
+    }
+}
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];

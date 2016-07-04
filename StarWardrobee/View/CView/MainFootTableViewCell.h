@@ -7,7 +7,13 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "CMainWaterFallModel.h"
+
+
 
 @interface MainFootTableViewCell : UITableViewCell
 
+@property(nonatomic,retain)CMainWaterFallModel *model;
+
+- (void)setAllDefault;
 @end
