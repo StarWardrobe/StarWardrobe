@@ -15,5 +15,5 @@
 
 @property(nonatomic,retain)CMainWaterFallModel *model;
 
-- (void)setAllDefault;
+
 @end

@@ -7,7 +7,7 @@
 //
 
 #import "MainFootTableViewCell.h"
-#import "CMainWaterFallModel.h"
+
 
 @interface MainFootTableViewCell ()
 {
@@ -111,10 +111,10 @@
 }
 
 
-- (void)setAllDefault {
-    [_bgView removeFromSuperview];
-    _bgView = nil;
-    [self createView];
-}
+//- (void)setAllDefault {
+//    [_bgView removeFromSuperview];
+//    _bgView = nil;
+//    [self createView];
+//}
 
 @end

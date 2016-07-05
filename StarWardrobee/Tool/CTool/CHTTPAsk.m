@@ -9,6 +9,7 @@
 #import "CHTTPAsk.h"
 #import "CMainHeaderModel.h"
 #import "CMainWaterFallModel.h"
+#import "CMatchCellModel.h"
 
 @implementation CHTTPAsk
 + (void)netHTTPForMainTopScrollArray:(void(^)(NSArray *arr))block {
@@ -149,5 +150,47 @@
     }];
 }
 
++ (void)netHTTPForMatchScrollViewCellWith:(NSString *)str GetArray:(void(^)(NSMutableArray *arr))block {
+    NSMutableArray *array = [NSMutableArray array];
+    NSString *EcodeStr = [str stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+    NSString *UrlStr =[NSString stringWithFormat:@"http://api-v2.mall.hichao.com/star/list?category=%@&lts=&pin=&flag=&gc=appstore&gf=iphone&gn=mxyc_ip&gv=6.6.3&gi=DA51E858-FC0D-4ACA-94C8-EC43CA9AC969&gs=640x1136&gos=8.4&access_token=",EcodeStr];
+    AFHTTPRequestOperationManager *manage = [AFHTTPRequestOperationManager manager];
+    manage.responseSerializer = [AFHTTPResponseSerializer serializer];
+    manage.responseSerializer.acceptableContentTypes = [NSSet setWithObjects:@"application/json", nil];
+    [manage GET:UrlStr parameters:nil success:^(AFHTTPRequestOperation * _Nonnull operation, id  _Nonnull responseObject) {
+        
+        NSDictionary *dic = [NSJSONSerialization JSONObjectWithData:responseObject options:NSJSONReadingMutableContainers error:nil];
+        
+        NSDictionary *dataDic = dic[@"data"];
+        NSArray *itemsArray = dataDic[@"items"];
+        for (NSDictionary *tempDic in itemsArray) {
+            
+            CMatchCellModel *model = [CMatchCellModel new];
+            
+            model.width = [tempDic[@"width"] integerValue];
+            model.height = [tempDic[@"height"] integerValue];
+            NSDictionary *comDic = tempDic[@"component"];
+            NSString *str = comDic[@"picUrl"];
+            NSArray *StrAr = [str componentsSeparatedByString:@"?"];
+            NSString *fistHttpStr = [NSString stringWithFormat:@"%@?",StrAr[0]];
+            model.PicUrl = fistHttpStr;
+            model.Description = comDic[@"description"];
+            model.itemsCount = [comDic[@"itemsCount"] intValue];
+            model.collectionCount = [comDic[@"collectionCount"] intValue];
+            [array addObject:model];
+            
+        }
+        if (block) {
+            block(array);
+        }
+
+    } failure:^(AFHTTPRequestOperation * _Nullable operation, NSError * _Nonnull error) {
+        NSLog(@"%@",error.localizedDescription);
+        if (block) {
+            block(nil);
+        }
+    }];
+
+}
 
 @end

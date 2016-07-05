@@ -182,7 +182,7 @@ typedef enum : NSUInteger {
     labe.backgroundColor = [UIColor redColor];
     [mainScreenScroll addSubview:labe];
     for (int i=0; i<2; i++) {
-        UITableView *table = [[UITableView alloc]initWithFrame:CGRectMake(i*(kMainBoundsW/2), NewHeight+55, kMainBoundsW/2, kMainBoundsH-55) style:UITableViewStylePlain];
+        UITableView *table = [[UITableView alloc]initWithFrame:CGRectMake(i*(kMainBoundsW/2), NewHeight+55+64, kMainBoundsW/2, kMainBoundsH-55-64) style:UITableViewStylePlain];
         table.backgroundColor = [UIColor redColor];
         table.delegate = self;
         table.dataSource = self;
@@ -247,16 +247,21 @@ typedef enum : NSUInteger {
         //找两个表
         UITableView *left = (UITableView *)[mainScreenScroll viewWithTag:TableViewLeft];
         UITableView *right = (UITableView *)[mainScreenScroll viewWithTag:TableViewRight];
-        if (scrollView.contentOffset.y < NewHeight) {
-            buttonView.center = CGPointMake(kMainBoundsW/2, NewHeight);
+        if (scrollView.contentOffset.y < NewHeight-64-55) {
+            buttonView.center = CGPointMake(kMainBoundsW/2, NewHeight+25);
             left.frame = CGRectMake(0, NewHeight+55, kMainBoundsW / 2 , kMainBoundsH);
             right.frame = CGRectMake(kMainBoundsW / 2, NewHeight+55, kMainBoundsW / 2 , kMainBoundsH);
             left.contentOffset = CGPointMake(0, 0);
             right.contentOffset = CGPointMake(0, 0);
         }else {
-            buttonView.center = CGPointMake(kMainBoundsW/2, scrollView.contentOffset.y+25+64);
-            left.center = CGPointMake(left.center.x, scrollView.contentOffset.y+kMainBoundsH/2);
-            right.center = CGPointMake(right.center.x, scrollView.contentOffset.y+kMainBoundsH/2);
+            
+            
+            buttonView.center = CGPointMake(kMainBoundsW/2, scrollView.contentOffset.y+25);
+            
+            [mainScreenScroll bringSubviewToFront:buttonView];
+            
+            left.center = CGPointMake(left.center.x, scrollView.contentOffset.y+kMainBoundsH/2+55);
+            right.center = CGPointMake(right.center.x, scrollView.contentOffset.y+kMainBoundsH/2+55);
             CGPoint offset = scrollView.contentOffset;
             offset.y -= NewHeight;
             left.contentOffset = offset;

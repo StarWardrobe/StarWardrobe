@@ -8,6 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		042773DC1D29F37100028A5F /* CMainWaterFallModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 042773DB1D29F37100028A5F /* CMainWaterFallModel.m */; };
+		0432B9231D2B4D08000C80CD /* MatchTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0432B9221D2B4D08000C80CD /* MatchTableViewCell.m */; };
+		0432B9261D2B5EF2000C80CD /* CMatchCellModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 0432B9251D2B5EF2000C80CD /* CMatchCellModel.m */; };
+		0432B9291D2C062D000C80CD /* MatchContexViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0432B9281D2C062D000C80CD /* MatchContexViewController.m */; };
 		044440901D27C8C000C53BCD /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 0444408F1D27C8C000C53BCD /* main.m */; };
 		044440931D27C8C000C53BCD /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 044440921D27C8C000C53BCD /* AppDelegate.m */; };
 		044440991D27C8C000C53BCD /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 044440971D27C8C000C53BCD /* Main.storyboard */; };
@@ -1408,6 +1411,12 @@
 /* Begin PBXFileReference section */
 		042773DA1D29F37100028A5F /* CMainWaterFallModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CMainWaterFallModel.h; sourceTree = "<group>"; };
 		042773DB1D29F37100028A5F /* CMainWaterFallModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CMainWaterFallModel.m; sourceTree = "<group>"; };
+		0432B9211D2B4D08000C80CD /* MatchTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MatchTableViewCell.h; sourceTree = "<group>"; };
+		0432B9221D2B4D08000C80CD /* MatchTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MatchTableViewCell.m; sourceTree = "<group>"; };
+		0432B9241D2B5EF2000C80CD /* CMatchCellModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CMatchCellModel.h; sourceTree = "<group>"; };
+		0432B9251D2B5EF2000C80CD /* CMatchCellModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CMatchCellModel.m; sourceTree = "<group>"; };
+		0432B9271D2C062D000C80CD /* MatchContexViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MatchContexViewController.h; sourceTree = "<group>"; };
+		0432B9281D2C062D000C80CD /* MatchContexViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MatchContexViewController.m; sourceTree = "<group>"; };
 		0444408B1D27C8C000C53BCD /* StarWardrobee.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = StarWardrobee.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0444408F1D27C8C000C53BCD /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		044440911D27C8C000C53BCD /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -2922,6 +2931,8 @@
 				04E7A1561D29352A0023C55A /* CMainInternationModel.m */,
 				042773DA1D29F37100028A5F /* CMainWaterFallModel.h */,
 				042773DB1D29F37100028A5F /* CMainWaterFallModel.m */,
+				0432B9241D2B5EF2000C80CD /* CMatchCellModel.h */,
+				0432B9251D2B5EF2000C80CD /* CMatchCellModel.m */,
 			);
 			path = CModel;
 			sourceTree = "<group>";
@@ -4397,6 +4408,8 @@
 				04EAD2021D28B25900F844D7 /* MainFootTableViewCell.h */,
 				04EAD2031D28B25900F844D7 /* MainFootTableViewCell.m */,
 				04EAD2041D28B25900F844D7 /* MainFootTableViewCell.xib */,
+				0432B9211D2B4D08000C80CD /* MatchTableViewCell.h */,
+				0432B9221D2B4D08000C80CD /* MatchTableViewCell.m */,
 				04E7A1521D291E020023C55A /* MainInternationView.h */,
 				04E7A1531D291E020023C55A /* MainInternationView.m */,
 			);
@@ -4477,6 +4490,8 @@
 			children = (
 				04EAD2141D28B32400F844D7 /* PreferenceViewController.h */,
 				04EAD2151D28B32400F844D7 /* PreferenceViewController.m */,
+				0432B9271D2C062D000C80CD /* MatchContexViewController.h */,
+				0432B9281D2C062D000C80CD /* MatchContexViewController.m */,
 			);
 			path = OtherVC;
 			sourceTree = "<group>";
@@ -5999,6 +6014,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0432B9291D2C062D000C80CD /* MatchContexViewController.m in Sources */,
 				044440931D27C8C000C53BCD /* AppDelegate.m in Sources */,
 				04E7A1511D28F68D0023C55A /* CMainHeaderModel.m in Sources */,
 				044440F01D27ECDC00C53BCD /* ZHTTPManager.m in Sources */,
@@ -6021,6 +6037,8 @@
 				044440F91D27ED3800C53BCD /* CMainFootModel.m in Sources */,
 				044440F61D27ED1100C53BCD /* ZShopModel.m in Sources */,
 				044440F31D27ECF100C53BCD /* CHTTPAsk.m in Sources */,
+				0432B9231D2B4D08000C80CD /* MatchTableViewCell.m in Sources */,
+				0432B9261D2B5EF2000C80CD /* CMatchCellModel.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
