@@ -10,6 +10,7 @@
 #import "CMainHeaderModel.h"
 #import "CMainWaterFallModel.h"
 #import "CMatchCellModel.h"
+#import "PersonModel.h"
 
 @implementation CHTTPAsk
 + (void)netHTTPForMainTopScrollArray:(void(^)(NSArray *arr))block {
@@ -192,5 +193,55 @@
     }];
 
 }
+
++ (void)netHTTPForSpecialTitleGetArray:(void(^)(NSMutableArray *arr))block {
+    NSMutableArray *array = [NSMutableArray array];
+    
+    [NetRequestClass netRequestGETWithRequestURL:@"http://api-v2.mall.hichao.com/mix_topics?flag=&gc=appstore&gf=iphone&gn=mxyc_ip&gv=6.6.3&gi=DA51E858-FC0D-4ACA-94C8-EC43CA9AC969&gs=640x1136&gos=8.4&access_token=" WithParameter:nil WithReturnValeuBlock:^(id responseObject, NSError *error) {
+        
+        NSDictionary *dataDic = responseObject[@"data"];
+        NSArray *itemsArray = dataDic[@"items"];
+        
+        
+        for (NSDictionary *Dic in itemsArray) {
+            
+            PersonModel *model = [PersonModel new];
+            NSDictionary *tempDic = Dic[@"component"];
+    
+            model.title = tempDic[@"title"];
+            model.kind = tempDic[@"category"];
+            NSString *day = tempDic[@"day"];
+            NSString *month = tempDic[@"month"];
+            NSString *year = tempDic[@"year"];
+            NSString *timeSend = [NSString stringWithFormat:@"%@.%@.%@",year,month,day];
+            model.time = timeSend;
+            
+            NSString *str = tempDic[@"picUrl"];
+            NSArray *StrAr = [str componentsSeparatedByString:@"?"];
+            NSString *fistHttpStr = [NSString stringWithFormat:@"%@?",StrAr[0]];
+            model.picUrl = fistHttpStr;
+            
+            model.messageCount = [tempDic[@"commentCount"] integerValue];
+            model.seeCount = [tempDic[@"v"] integerValue];
+            model.concernCount = [tempDic[@"collectionCount"] integerValue];
+            [array addObject:model];
+        }
+        if (block) {
+            block(array);
+        }    
+    }];
+}
+
++ (void)netHttpForGuidePictureWithBlock:(void(^)(NSMutableArray *arr))block {
+    [NetRequestClass netRequestGETWithRequestURL:@"http://api-v2.mall.hichao.com/mall/region/new?region_id=1&gc=appstore&gf=iphone&gn=mxyc_ip&gv=6.6.3&gi=DA51E858-FC0D-4ACA-94C8-EC43CA9AC969&gs=640x1136&gos=8.4&access_token=" WithParameter:nil WithReturnValeuBlock:^(id responseObject, NSError *error) {
+        
+        NSLog(@"????????%@",responseObject);
+    }];
+}
+
+
+
+
+
 
 @end

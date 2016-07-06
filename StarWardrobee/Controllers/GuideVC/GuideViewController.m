@@ -7,6 +7,7 @@
 //
 
 #import "GuideViewController.h"
+#include "CHTTPAsk.h"
 
 @interface GuideViewController ()
 
@@ -21,6 +22,13 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    
+    
+    //请求出加载引导图片，然后延迟1，2秒，再触发跳转
+//    [CHTTPAsk netHttpForGuidePictureWithBlock:^(NSMutableArray *arr) {
+//        
+//    }];
+    
     
     self.view.backgroundColor = [UIColor cyanColor];
     
@@ -40,7 +48,7 @@
 }
 
 #pragma mark - 进入主界面
-- (void)enter:(id)sender {
+- (void)enter:(UIButton *)sender {
     self.block();
 }
 

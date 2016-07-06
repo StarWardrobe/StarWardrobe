@@ -35,17 +35,23 @@ typedef enum : NSUInteger {
     UIScrollView *mainScrollView;
     CGFloat _colHeight[2];
     UIScrollView *CellScrollView;
-    //UIScrollView *mainScrollView;
+    UILabel *SelectLabel;
 }
 @property(retain,nonatomic)NSMutableArray *dataArray;
 @property(retain,nonatomic)NSMutableArray *indexArray;
 
 @property(retain,nonatomic)NSMutableArray *dataTableArray;
 @property(retain,nonatomic)NSMutableArray *indexTableArray;//index数据源
-
+@property(retain,nonatomic)NSMutableArray *DequeateArray;
 @end
 
 @implementation MatchContexViewController
+- (NSMutableArray *)DequeateArray {
+    if (!_DequeateArray) {
+        _DequeateArray = [NSMutableArray array];
+    }
+    return _DequeateArray;
+}
 - (NSMutableArray *)dataTableArray {
     if (!_dataTableArray) {
         _dataTableArray = [NSMutableArray array];
@@ -92,10 +98,15 @@ typedef enum : NSUInteger {
             [self createMatchCellScrollViewFallWith:arr];
             //[mainScrollView addSubview:CellScroll];
         }];
-        mainScrollView = [[UIScrollView alloc]initWithFrame:CGRectMake(0, -14, kMainBoundsW, kMainBoundsH+64)];
+        mainScrollView = [[UIScrollView alloc]initWithFrame:CGRectMake(0, 64, kMainBoundsW, kMainBoundsH+64)];
+        //小滑动ScrollView里面的点击可滑动选中小划杠。
+        SelectLabel = [[UILabel alloc]initWithFrame:CGRectMake(0, 114, 80, 3)];
+        SelectLabel.backgroundColor = [UIColor redColor];
+        [self.view addSubview:SelectLabel];
     });
     
     mainScrollView.contentSize = CGSizeMake(kMainBoundsW*TopScrollArray.count, 0);
+    mainScrollView.delegate = self;
     mainScrollView.tag = mainScrollViewTag;
     mainScrollView.pagingEnabled = YES;
     [self.view addSubview:mainScrollView];
@@ -106,7 +117,7 @@ typedef enum : NSUInteger {
     
     for (int i = 0; i<TopScrollArray.count; i++) {
         UIButton *butto = [UIButton buttonWithType:UIButtonTypeSystem];
-        butto.frame = CGRectMake(80*i, 0, 80, 50);
+        butto.frame = CGRectMake(80*i, 0, 80, 55);
         [butto setTitle:TopScrollArray[i] forState:UIControlStateNormal];
         butto.tag = ScrollHeaderViewTag+i;
         [butto addTarget:self action:@selector(ChooseKindOfFashion:) forControlEvents:UIControlEventTouchUpInside];
@@ -118,31 +129,45 @@ typedef enum : NSUInteger {
     
 }
 - (void)ChooseKindOfFashion:(UIButton *)sender {
+    [UIView animateWithDuration:0.3 animations:^{
+        SelectLabel.center = CGPointMake(sender.center.x, 114+1);
+    } completion:^(BOOL finished) {
+        
+    }];
     
-    NSLog(@"%@",TopScrollArray[sender.tag-ScrollHeaderViewTag]);
+    NSInteger index = sender.tag-ScrollHeaderViewTag;
     //也可以在这里把小scrollView的东西移除
     NSArray *arr = [mainScrollView subviews];
     for (UIScrollView *oldScroll in arr) {
         [oldScroll removeFromSuperview];
     }
     [CHTTPAsk netHTTPForMatchScrollViewCellWith:TopScrollArray[sender.tag-ScrollHeaderViewTag] GetArray:^(NSMutableArray *arr) {
-        //        [UIView animateWithDuration:0.3 animations:^{
-        //            CellScrollView.center = CGPointMake(kMainBoundsW/2+kMainBoundsW*(sender.tag-ScrollHeaderViewTag), CellScrollView.center.y);
-        //        } completion:^(BOOL finished) {
-        [self createMatchCellScrollViewFallWith:arr];
-        //        }];
+        
+    [self createMatchCellScrollViewFallWith:arr];
+        
+    mainScrollView.contentOffset = CGPointMake(kMainBoundsW*index, mainScrollView.center.y-425);
+    CellScrollView.center = CGPointMake(kMainBoundsW/2+kMainBoundsW*index, CellScrollView.center.y);
+        NSLog(@"%f",CellScrollView.center.x);
     }];
 }
 
 - (void)createMatchMainView {
+    [SelectElementScrollView removeFromSuperview];
+    [ChoosePersonbutton removeFromSuperview];
+    [ChooseColleView removeFromSuperview];
+    [titleLabel removeFromSuperview];
+    
     SelectElementScrollView = [[UIScrollView alloc]initWithFrame:CGRectMake(5, 64, kMainBoundsW-55, 50)];
     [self createMatchTopScrollViewWithIndexArryFirstEle:self.indexArray[0]];
+    
     ChoosePersonbutton = [UIButton buttonWithType:UIButtonTypeSystem];
     ChoosePersonbutton.center = CGPointMake(kMainBoundsW-25, 64+25);
     ChoosePersonbutton.bounds = CGRectMake(0, 0, 20, 20);
     [ChoosePersonbutton setBackgroundImage:[UIImage imageNamed:@"icon_class_open@3x"] forState:UIControlStateNormal];
     [ChoosePersonbutton addTarget:self action:@selector(ChooseElementButtonClick:) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:ChoosePersonbutton];
+    
+    
     
     UICollectionViewFlowLayout *layout = [[UICollectionViewFlowLayout alloc]init];
     layout.scrollDirection = UICollectionViewScrollDirectionVertical;
@@ -222,7 +247,7 @@ typedef enum : NSUInteger {
 
 - (void)ChooseElementButtonClick:(UIButton *)sender {
     isChoosePersonMatch = !isChoosePersonMatch;
-    NSLog(@"%d",isChoosePersonMatch);
+    
     ChoosePersonbutton.transform = CGAffineTransformMakeRotation(M_PI*isChoosePersonMatch);
     if (isChoosePersonMatch) {
         //跳出选择视图
@@ -246,6 +271,7 @@ typedef enum : NSUInteger {
             ChooseColleView.frame = CGRectMake(0, 64, kMainBoundsW,50);
         } completion:^(BOOL finished) {
             [self createMatchTopScrollViewWithIndexArryFirstEle:self.indexArray[0]]; 
+            [self createMatchMainView];
         }];
     }
 }
@@ -261,25 +287,31 @@ typedef enum : NSUInteger {
     _colHeight[1] = 0;
     [self.dataTableArray addObjectsFromArray:array];
     
-    CellScrollView = [[UIScrollView alloc]initWithFrame:CGRectMake(0, 55, kMainBoundsW, mainScrollView.frame.size.height-50)];
-    CellScrollView.tag = CellScrollTag;
-    CellScrollView.delegate = self;
-    [mainScrollView addSubview:CellScrollView];
-    for (int i=0; i<2; i++) {
-        UITableView *table = [[UITableView alloc]initWithFrame:CGRectMake(i*(kMainBoundsW/2), 0, kMainBoundsW/2, kMainBoundsH) style:UITableViewStylePlain];
-        table.backgroundColor = [UIColor redColor];
-        table.delegate = self;
-        table.dataSource = self;
-        table.tag = i+WatherFallTableLeft;
-        //scroll的滑动属性
-        table.scrollEnabled = NO;
-        
-        [CellScrollView addSubview:table];
-        //去掉莫名其妙的cell
-        table.tableFooterView = [UIView new];
-        [table registerClass:[MatchTableViewCell class] forCellReuseIdentifier:@"cell"];
+    
+    if (self.DequeateArray.count == 0) {
+        CellScrollView = [[UIScrollView alloc]initWithFrame:CGRectMake(0, 55, kMainBoundsW, mainScrollView.frame.size.height-50)];
+        CellScrollView.tag = CellScrollTag;
+        CellScrollView.delegate = self;
+        for (int i=0; i<2; i++) {
+            UITableView *table = [[UITableView alloc]initWithFrame:CGRectMake(i*(kMainBoundsW/2), 0, kMainBoundsW/2, kMainBoundsH) style:UITableViewStylePlain];
+            //table.backgroundColor = [UIColor redColor];
+            table.delegate = self;
+            table.dataSource = self;
+            table.tag = i+WatherFallTableLeft;
+            //scroll的滑动属性
+            table.scrollEnabled = NO;
+            
+            [CellScrollView addSubview:table];
+            //去掉莫名其妙的cell
+            table.tableFooterView = [UIView new];
+            [table registerClass:[MatchTableViewCell class] forCellReuseIdentifier:@"cell"];
+        }
+    }else {
+        CellScrollView = self.DequeateArray[0];
+        [self.DequeateArray removeObjectAtIndex:0];
     }
-    //[self addSubview:mainScrollView];
+        
+    [mainScrollView addSubview:CellScrollView];
     [self reloadView];
 }
 
@@ -347,30 +379,33 @@ typedef enum : NSUInteger {
     UITableView *right = (UITableView *)[scrollView viewWithTag:WatherFallTableRight];
     if (scrollView.tag == CellScrollTag) {
         //找两个表
-        
         left.center = CGPointMake(left.center.x, scrollView.contentOffset.y+64+(kMainBoundsH-114)/2);
         right.center = CGPointMake(right.center.x, scrollView.contentOffset.y+64+(kMainBoundsH-114)/2);
         left.contentOffset = scrollView.contentOffset;
         right.contentOffset = scrollView.contentOffset;
     }
+}
+- (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView {
     if (scrollView.tag == mainScrollViewTag) {
-        
         NSInteger index = scrollView.contentOffset.x/kMainBoundsW;
+        [UIView animateWithDuration:0.3 animations:^{
+             SelectLabel.center = CGPointMake(5+40+index*80, 114);
+        } completion:^(BOOL finished) {
+            
+        }];
+       
         //左右划，取数据，刷表。
-        
         NSArray *arr = [mainScrollView subviews];
         for (UIScrollView *oldScroll in arr) {
             [oldScroll removeFromSuperview];
         }
         [CHTTPAsk netHTTPForMatchScrollViewCellWith:TopScrollArray[index] GetArray:^(NSMutableArray *arr) {
-            
             [self createMatchCellScrollViewFallWith:arr];
             
+            CellScrollView.center = CGPointMake(kMainBoundsW/2+kMainBoundsW*index, CellScrollView.center.y);
+            [self.DequeateArray addObject:CellScrollView];
         }];
-        CellScrollView.center = CGPointMake(kMainBoundsW/2+kMainBoundsW*index, CellScrollView.center.y);
-        
     }
-    
 }
 
 - (void)didReceiveMemoryWarning {

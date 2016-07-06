@@ -1405,6 +1405,16 @@
 		04EAD2221D28BD2F00F844D7 /* ManViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 04EAD2211D28BD2F00F844D7 /* ManViewController.m */; };
 		04EAD2251D28BD3F00F844D7 /* MatchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 04EAD2241D28BD3F00F844D7 /* MatchViewController.m */; };
 		04EAD2281D28BD4E00F844D7 /* ShopViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 04EAD2271D28BD4E00F844D7 /* ShopViewController.m */; };
+		04EE08201D2CD796000B786F /* PersonModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 04EE081F1D2CD796000B786F /* PersonModel.m */; };
+		04EE08231D2CDD88000B786F /* PersonTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 04EE08221D2CDD88000B786F /* PersonTableViewCell.m */; };
+		04EE08261D2CFB52000B786F /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 04EE08251D2CFB52000B786F /* LoginViewController.m */; };
+		04EE082B1D2CFC2A000B786F /* CommuityTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 04EE08281D2CFC2A000B786F /* CommuityTableViewCell.m */; };
+		04EE082C1D2CFC2A000B786F /* ZTabBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 04EE082A1D2CFC2A000B786F /* ZTabBar.m */; };
+		04EE08311D2CFCE2000B786F /* RefreshTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 04EE082E1D2CFCE2000B786F /* RefreshTool.m */; };
+		04EE08321D2CFCE2000B786F /* ZZCarouselControl.m in Sources */ = {isa = PBXBuildFile; fileRef = 04EE08301D2CFCE2000B786F /* ZZCarouselControl.m */; };
+		04EE08391D2CFD39000B786F /* ZCommentsModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 04EE08341D2CFD39000B786F /* ZCommentsModel.m */; };
+		04EE083A1D2CFD39000B786F /* ZCompontentModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 04EE08361D2CFD39000B786F /* ZCompontentModel.m */; };
+		04EE083B1D2CFD39000B786F /* ZUserModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 04EE08381D2CFD39000B786F /* ZUserModel.m */; };
 		B79CCF7DC75746F7E97810DA /* Pods_StarWardrobee.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B4AE17AE395FEB658A044F08 /* Pods_StarWardrobee.framework */; };
 /* End PBXBuildFile section */
 
@@ -2837,6 +2847,26 @@
 		04EAD2241D28BD3F00F844D7 /* MatchViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MatchViewController.m; sourceTree = "<group>"; };
 		04EAD2261D28BD4E00F844D7 /* ShopViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShopViewController.h; sourceTree = "<group>"; };
 		04EAD2271D28BD4E00F844D7 /* ShopViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShopViewController.m; sourceTree = "<group>"; };
+		04EE081E1D2CD796000B786F /* PersonModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PersonModel.h; sourceTree = "<group>"; };
+		04EE081F1D2CD796000B786F /* PersonModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PersonModel.m; sourceTree = "<group>"; };
+		04EE08211D2CDD88000B786F /* PersonTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PersonTableViewCell.h; sourceTree = "<group>"; };
+		04EE08221D2CDD88000B786F /* PersonTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PersonTableViewCell.m; sourceTree = "<group>"; };
+		04EE08241D2CFB52000B786F /* LoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginViewController.h; sourceTree = "<group>"; };
+		04EE08251D2CFB52000B786F /* LoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
+		04EE08271D2CFC2A000B786F /* CommuityTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommuityTableViewCell.h; sourceTree = "<group>"; };
+		04EE08281D2CFC2A000B786F /* CommuityTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommuityTableViewCell.m; sourceTree = "<group>"; };
+		04EE08291D2CFC2A000B786F /* ZTabBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZTabBar.h; sourceTree = "<group>"; };
+		04EE082A1D2CFC2A000B786F /* ZTabBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZTabBar.m; sourceTree = "<group>"; };
+		04EE082D1D2CFCE2000B786F /* RefreshTool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RefreshTool.h; sourceTree = "<group>"; };
+		04EE082E1D2CFCE2000B786F /* RefreshTool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RefreshTool.m; sourceTree = "<group>"; };
+		04EE082F1D2CFCE2000B786F /* ZZCarouselControl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZZCarouselControl.h; sourceTree = "<group>"; };
+		04EE08301D2CFCE2000B786F /* ZZCarouselControl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZZCarouselControl.m; sourceTree = "<group>"; };
+		04EE08331D2CFD39000B786F /* ZCommentsModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZCommentsModel.h; sourceTree = "<group>"; };
+		04EE08341D2CFD39000B786F /* ZCommentsModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZCommentsModel.m; sourceTree = "<group>"; };
+		04EE08351D2CFD39000B786F /* ZCompontentModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZCompontentModel.h; sourceTree = "<group>"; };
+		04EE08361D2CFD39000B786F /* ZCompontentModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZCompontentModel.m; sourceTree = "<group>"; };
+		04EE08371D2CFD39000B786F /* ZUserModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZUserModel.h; sourceTree = "<group>"; };
+		04EE08381D2CFD39000B786F /* ZUserModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZUserModel.m; sourceTree = "<group>"; };
 		B4AE17AE395FEB658A044F08 /* Pods_StarWardrobee.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_StarWardrobee.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D56EE1B5F5F341FF1A1EFBB3 /* Pods-StarWardrobee.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-StarWardrobee.release.xcconfig"; path = "Pods/Target Support Files/Pods-StarWardrobee/Pods-StarWardrobee.release.xcconfig"; sourceTree = "<group>"; };
 		D61F6A0E7707DCB7D4A73FC3 /* Pods-StarWardrobee.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-StarWardrobee.debug.xcconfig"; path = "Pods/Target Support Files/Pods-StarWardrobee/Pods-StarWardrobee.debug.xcconfig"; sourceTree = "<group>"; };
@@ -2933,6 +2963,8 @@
 				042773DB1D29F37100028A5F /* CMainWaterFallModel.m */,
 				0432B9241D2B5EF2000C80CD /* CMatchCellModel.h */,
 				0432B9251D2B5EF2000C80CD /* CMatchCellModel.m */,
+				04EE081E1D2CD796000B786F /* PersonModel.h */,
+				04EE081F1D2CD796000B786F /* PersonModel.m */,
 			);
 			path = CModel;
 			sourceTree = "<group>";
@@ -2942,6 +2974,12 @@
 			children = (
 				044440F41D27ED1100C53BCD /* ZShopModel.h */,
 				044440F51D27ED1100C53BCD /* ZShopModel.m */,
+				04EE08331D2CFD39000B786F /* ZCommentsModel.h */,
+				04EE08341D2CFD39000B786F /* ZCommentsModel.m */,
+				04EE08351D2CFD39000B786F /* ZCompontentModel.h */,
+				04EE08361D2CFD39000B786F /* ZCompontentModel.m */,
+				04EE08371D2CFD39000B786F /* ZUserModel.h */,
+				04EE08381D2CFD39000B786F /* ZUserModel.m */,
 			);
 			path = ZModel;
 			sourceTree = "<group>";
@@ -2969,6 +3007,10 @@
 			children = (
 				044440EE1D27ECDC00C53BCD /* ZHTTPManager.h */,
 				044440EF1D27ECDC00C53BCD /* ZHTTPManager.m */,
+				04EE082D1D2CFCE2000B786F /* RefreshTool.h */,
+				04EE082E1D2CFCE2000B786F /* RefreshTool.m */,
+				04EE082F1D2CFCE2000B786F /* ZZCarouselControl.h */,
+				04EE08301D2CFCE2000B786F /* ZZCarouselControl.m */,
 			);
 			path = ZTool;
 			sourceTree = "<group>";
@@ -4412,6 +4454,8 @@
 				0432B9221D2B4D08000C80CD /* MatchTableViewCell.m */,
 				04E7A1521D291E020023C55A /* MainInternationView.h */,
 				04E7A1531D291E020023C55A /* MainInternationView.m */,
+				04EE08211D2CDD88000B786F /* PersonTableViewCell.h */,
+				04EE08221D2CDD88000B786F /* PersonTableViewCell.m */,
 			);
 			path = CView;
 			sourceTree = "<group>";
@@ -4422,6 +4466,10 @@
 				04EAD2071D28B26D00F844D7 /* ShopTableViewCell.h */,
 				04EAD2081D28B26D00F844D7 /* ShopTableViewCell.m */,
 				04EAD2091D28B26D00F844D7 /* ShopTableViewCell.xib */,
+				04EE08271D2CFC2A000B786F /* CommuityTableViewCell.h */,
+				04EE08281D2CFC2A000B786F /* CommuityTableViewCell.m */,
+				04EE08291D2CFC2A000B786F /* ZTabBar.h */,
+				04EE082A1D2CFC2A000B786F /* ZTabBar.m */,
 			);
 			path = ZView;
 			sourceTree = "<group>";
@@ -4501,6 +4549,8 @@
 			children = (
 				04EAD2261D28BD4E00F844D7 /* ShopViewController.h */,
 				04EAD2271D28BD4E00F844D7 /* ShopViewController.m */,
+				04EE08241D2CFB52000B786F /* LoginViewController.h */,
+				04EE08251D2CFB52000B786F /* LoginViewController.m */,
 			);
 			path = ShopCarVC;
 			sourceTree = "<group>";
@@ -6014,15 +6064,22 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				04EE082C1D2CFC2A000B786F /* ZTabBar.m in Sources */,
+				04EE08321D2CFCE2000B786F /* ZZCarouselControl.m in Sources */,
 				0432B9291D2C062D000C80CD /* MatchContexViewController.m in Sources */,
 				044440931D27C8C000C53BCD /* AppDelegate.m in Sources */,
 				04E7A1511D28F68D0023C55A /* CMainHeaderModel.m in Sources */,
 				044440F01D27ECDC00C53BCD /* ZHTTPManager.m in Sources */,
+				04EE082B1D2CFC2A000B786F /* CommuityTableViewCell.m in Sources */,
+				04EE08261D2CFB52000B786F /* LoginViewController.m in Sources */,
 				04E796981D28C5B00023C55A /* RequestClient.m in Sources */,
+				04EE083A1D2CFD39000B786F /* ZCompontentModel.m in Sources */,
 				04EAD2051D28B25900F844D7 /* MainFootTableViewCell.m in Sources */,
+				04EE083B1D2CFD39000B786F /* ZUserModel.m in Sources */,
 				04EAD2221D28BD2F00F844D7 /* ManViewController.m in Sources */,
 				04EAD2191D28BD0300F844D7 /* CommunityViewController.m in Sources */,
 				04EAD21F1D28BD1C00F844D7 /* MainViewController.m in Sources */,
+				04EE08311D2CFCE2000B786F /* RefreshTool.m in Sources */,
 				04E7A1571D29352A0023C55A /* CMainInternationModel.m in Sources */,
 				04E796971D28C5B00023C55A /* NetRequestClass.m in Sources */,
 				04EAD2161D28B32400F844D7 /* PreferenceViewController.m in Sources */,
@@ -6034,10 +6091,13 @@
 				044440901D27C8C000C53BCD /* main.m in Sources */,
 				04E7A1541D291E020023C55A /* MainInternationView.m in Sources */,
 				044440E01D27EB3100C53BCD /* NSString+BXExtension.m in Sources */,
+				04EE08231D2CDD88000B786F /* PersonTableViewCell.m in Sources */,
 				044440F91D27ED3800C53BCD /* CMainFootModel.m in Sources */,
 				044440F61D27ED1100C53BCD /* ZShopModel.m in Sources */,
 				044440F31D27ECF100C53BCD /* CHTTPAsk.m in Sources */,
+				04EE08391D2CFD39000B786F /* ZCommentsModel.m in Sources */,
 				0432B9231D2B4D08000C80CD /* MatchTableViewCell.m in Sources */,
+				04EE08201D2CD796000B786F /* PersonModel.m in Sources */,
 				0432B9261D2B5EF2000C80CD /* CMatchCellModel.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

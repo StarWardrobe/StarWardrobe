@@ -7,18 +7,54 @@
 //
 
 #import "PreferenceViewController.h"
+#import "CHTTPAsk.h"
+#import "PersonTableViewCell.h"
 
-@interface PreferenceViewController ()
+@interface PreferenceViewController ()<UITableViewDataSource,UITableViewDelegate>
+
+@property(retain,nonatomic)NSMutableArray *dataArray;
 
 @end
 
 @implementation PreferenceViewController
-
+- (NSMutableArray *)dataArray {
+    if (!_dataArray) {
+        _dataArray = [NSMutableArray array];
+    }
+    return  _dataArray;
+}
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.view.backgroundColor = [UIColor yellowColor];
     // Do any additional setup after loading the view.
+    [self createMyTableView];
 }
+- (void)createMyTableView {
+    UITableView *myTableView = [[UITableView alloc]initWithFrame:CGRectMake(0, 64, kMainBoundsW, kMainBoundsH-64) style:UITableViewStylePlain];
+    myTableView.delegate = self;
+    myTableView.dataSource = self;
+    myTableView.tag = 20;
+    [self.view addSubview:myTableView];
+    [myTableView registerClass:[PersonTableViewCell class] forCellReuseIdentifier:@"cell"];
+    
+    [CHTTPAsk netHTTPForSpecialTitleGetArray:^(NSMutableArray *arr) {
+        [self.dataArray addObjectsFromArray:arr];
+        [myTableView reloadData];
+    }];
+}
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+    return kMainBoundsH/2+10;
+}
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+    return self.dataArray.count;
+}
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    PersonTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell" forIndexPath:indexPath];
+    PersonModel *model = self.dataArray[indexPath.row];
+    cell.model = model;
+    return cell;
+}
+
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];

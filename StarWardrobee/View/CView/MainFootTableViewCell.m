@@ -111,10 +111,6 @@
 }
 
 
-//- (void)setAllDefault {
-//    [_bgView removeFromSuperview];
-//    _bgView = nil;
-//    [self createView];
-//}
+
 
 @end

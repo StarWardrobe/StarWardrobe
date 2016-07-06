@@ -10,4 +10,6 @@
 
 @interface ZHTTPManager : NSObject
 
++ (void)getRequestWithUrl:(NSString *)url andPragramer:(NSDictionary *)dic withResposeBlock:(ITFinishedBlock)block;
++ (void)postRequestWithUrl:(NSString *)url andPragramer:(NSDictionary *)dic withResposeBlock:(ITFinishedBlock)block;
 @end

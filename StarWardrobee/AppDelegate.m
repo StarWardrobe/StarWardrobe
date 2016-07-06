@@ -13,12 +13,12 @@
 #import "ManViewController.h"
 #import "MatchViewController.h"
 #import "ShopViewController.h"
-
+#import "LoginViewController.h"
 
 
 typedef void(^block)(void);
 
-@interface AppDelegate ()
+@interface AppDelegate ()<UITabBarControllerDelegate>
 
 @end
 
@@ -46,7 +46,7 @@ typedef void(^block)(void);
         
         UITabBarController *tabBarC = [UITabBarController new];
         
-        
+        tabBarC.delegate = self;
         UINavigationController *mainNAV = [[UINavigationController alloc]initWithRootViewController:[MainViewController new]];
         mainNAV.tabBarItem.title = @"首页";
         mainNAV.tabBarItem.image =[UIImage imageNamed:@"bottom_home_icon@2x"];
@@ -81,6 +81,19 @@ typedef void(^block)(void);
     
     
     return YES;
+}
+//代理方法,这个方法是来判断当点击某个tabBarItem时是否要点击下去,
+- (BOOL)tabBarController:(UITabBarController *)tabBarController shouldSelectViewController:(UIViewController *)viewController {
+    UINavigationController *nav = (UINavigationController *)viewController;
+    if ([[nav.viewControllers objectAtIndex:0] isKindOfClass:[ShopViewController class]]) {
+        //可以判断是否登录
+        LoginViewController *vc =[LoginViewController new];
+        
+        [self.window.rootViewController presentViewController:vc animated:YES completion:nil];
+        return NO;
+    }
+    return YES;
+    
 }
 
 - (void)applicationWillResignActive:(UIApplication *)application {

@@ -22,4 +22,9 @@
 
 + (void)netHTTPForMatchScrollViewCellWith:(NSString *)str GetArray:(void(^)(NSMutableArray *arr))block;
 
+
++ (void)netHTTPForSpecialTitleGetArray:(void(^)(NSMutableArray *arr))block;
+
++ (void)netHttpForGuidePictureWithBlock:(void(^)(NSMutableArray *arr))block;
+
 @end
