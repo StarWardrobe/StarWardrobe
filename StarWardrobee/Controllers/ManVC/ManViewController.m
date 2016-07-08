@@ -17,6 +17,9 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    self.title = @"男衣邦";
+    self.view.backgroundColor = [UIColor cyanColor];
+    
 }
 
 - (void)didReceiveMemoryWarning {

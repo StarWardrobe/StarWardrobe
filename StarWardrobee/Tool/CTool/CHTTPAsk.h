@@ -27,4 +27,9 @@
 
 + (void)netHttpForGuidePictureWithBlock:(void(^)(NSMutableArray *arr))block;
 
++ (void)netHTTPForCommunityWithIndex:(NSInteger)number GetBlock:(void(^)(NSMutableArray *arr))block;
+
++ (void)netHTTPForHeaderCommunityWithBlock:(void(^)(NSMutableArray *arr))block;
+
+
 @end

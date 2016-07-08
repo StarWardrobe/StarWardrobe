@@ -21,7 +21,7 @@
                 scrollView.frame = CGRectMake(0, kMainBoundsH/12, kMainBoundsW, kMainBoundsH/12+15);
                 for (int k=0; k<scrollArray.count; k++) {
                     UIImageView *imageAD = [[UIImageView alloc]initWithFrame:CGRectMake(kMainBoundsW/5*k, 0, kMainBoundsW/5, scrollView.frame.size.height)];
-                    [imageAD sd_setImageWithURL:[NSURL URLWithString:scrollArray[k]]];
+                    [imageAD sd_setImageWithURL:[NSURL URLWithString:scrollArray[k]] placeholderImage:[UIImage imageNamed:@"mascot_1"]];
                     [scrollView addSubview:imageAD];
                     scrollView.contentSize = CGSizeMake(imageAD.frame.size.width*(scrollArray.count), imageAD.frame.size.height);
                 }
@@ -29,7 +29,7 @@
                 scrollView.frame = CGRectMake(0, kMainBoundsH/6+15, kMainBoundsW, kMainBoundsH/2-15);
                 for (int k=0; k<scrollArray.count; k++) {
                     UIImageView *imageAD = [[UIImageView alloc]initWithFrame:CGRectMake(kMainBoundsW*k, 0, kMainBoundsW, scrollView.frame.size.height)];
-                    [imageAD sd_setImageWithURL:[NSURL URLWithString:scrollArray[k]]];
+                    [imageAD sd_setImageWithURL:[NSURL URLWithString:scrollArray[k]] placeholderImage:[UIImage imageNamed:@"mascot_1"]];
                     [scrollView addSubview:imageAD];
                     scrollView.contentSize = CGSizeMake(imageAD.frame.size.width*(scrollArray.count), imageAD.frame.size.height);
                     scrollView.pagingEnabled = YES;
@@ -40,7 +40,7 @@
                     CMainInternationModel *model = scrollArray[k];
                     UIView *ViewAD = [[UIView alloc]initWithFrame:CGRectMake(kMainBoundsW/5*k, 0, kMainBoundsW/5, scrollView.frame.size.height)];
                     UIImageView *imageAD = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, ViewAD.size.width, ViewAD.size.height/2)];
-                    [imageAD sd_setImageWithURL:[NSURL URLWithString:model.picUrl]];
+                    [imageAD sd_setImageWithURL:[NSURL URLWithString:model.picUrl]placeholderImage:[UIImage imageNamed:@"mascot_1"]];
                     [ViewAD addSubview:imageAD];
                     UILabel *titleLabel = [[UILabel alloc]initWithFrame:CGRectMake(0, ViewAD.size.height/2, ViewAD.size.width, ViewAD.size.height/8)];
                     titleLabel.textAlignment = NSTextAlignmentCenter;

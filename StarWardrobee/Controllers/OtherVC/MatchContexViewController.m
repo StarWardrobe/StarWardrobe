@@ -85,6 +85,7 @@ typedef enum : NSUInteger {
 - (void)beginIndexArray {
     [self.indexArray[1] addObjectsFromArray:self.dataArray];
 }
+
 - (void)createMatchTopScrollViewWithIndexArryFirstEle:(NSMutableArray *)indexFirstArr {
     [TopScrollArray removeAllObjects];
     TopScrollArray = @[@"最新"].mutableCopy;
@@ -217,9 +218,9 @@ typedef enum : NSUInteger {
     return UIEdgeInsetsMake(10, 10, 10, 10);
 }
 - (UICollectionReusableView *)collectionView:(UICollectionView *)collectionView viewForSupplementaryElementOfKind:(NSString *)kind atIndexPath:(NSIndexPath *)indexPath {
-    UICollectionReusableView *View = nil;
-    if ([kind isEqualToString:UICollectionElementKindSectionHeader]) {
-        View = [collectionView dequeueReusableSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:@"header" forIndexPath:indexPath];
+    
+//    if ([kind isEqualToString:UICollectionElementKindSectionHeader]) {
+       UICollectionReusableView *View = [collectionView dequeueReusableSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:@"header" forIndexPath:indexPath];
         UILabel *KAINLabel = [[UILabel alloc]initWithFrame:CGRectMake(0, 0, kMainBoundsW/2, 50)];
         [View addSubview:KAINLabel];
         if (indexPath.section == 0) {
@@ -232,7 +233,7 @@ typedef enum : NSUInteger {
             KAINLabel.text = @"点击添加分类";
         }
         
-    }
+//    }
     return View;
 }
 -  (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{

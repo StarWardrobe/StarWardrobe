@@ -29,29 +29,23 @@
 //        
 //    }];
     
-    
+    //如果有返回数据的时候延时2秒眺望下一界面。
+    [NSTimer scheduledTimerWithTimeInterval:2 target:self selector:@selector(Ent) userInfo:nil repeats:NO];
     self.view.backgroundColor = [UIColor cyanColor];
     
-    UIButton *button = [UIButton buttonWithType:UIButtonTypeSystem];
-    button.bounds = CGRectMake(0, 0, 200, 44);
-    button.center = self.view.center;
-    [button setTitle:@"欢迎进入明星衣橱" forState:UIControlStateNormal];
     
-    [button addTarget:self action:@selector(enter:) forControlEvents:UIControlEventTouchUpInside];
     
-    [self.view addSubview:button];
+    //如果没有返回数据的时候直接跳转
+    //[self Ent];
     
 }
-
+#pragma mark - 进入主界面
+- (void)Ent {
+    self.block();
+}
 - (void)enterRootVC:(DidSelectedEnter)newBlock {
     self.block = newBlock;
 }
-
-#pragma mark - 进入主界面
-- (void)enter:(UIButton *)sender {
-    self.block();
-}
-
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];

@@ -90,7 +90,7 @@
     _KindLabel.text = [NSString stringWithFormat:@"#%@#",model.kind];
 
     _picImage.frame = CGRectMake(5, self.frame.size.height/5, self.frame.size.width-10, self.frame.size.height*3/5);
-    [_picImage sd_setImageWithURL:[NSURL URLWithString:model.picUrl]];
+    [_picImage sd_setImageWithURL:[NSURL URLWithString:model.picUrl]placeholderImage:[UIImage imageNamed:@"mascot_1"]];
 
     _messLabel.frame = CGRectMake(55, self.frame.size.height*4/5+10, 50, 50);
     _messLabel.text = [NSString stringWithFormat:@"%ld",model.messageCount];

@@ -1409,12 +1409,18 @@
 		04EE08231D2CDD88000B786F /* PersonTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 04EE08221D2CDD88000B786F /* PersonTableViewCell.m */; };
 		04EE08261D2CFB52000B786F /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 04EE08251D2CFB52000B786F /* LoginViewController.m */; };
 		04EE082B1D2CFC2A000B786F /* CommuityTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 04EE08281D2CFC2A000B786F /* CommuityTableViewCell.m */; };
-		04EE082C1D2CFC2A000B786F /* ZTabBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 04EE082A1D2CFC2A000B786F /* ZTabBar.m */; };
 		04EE08311D2CFCE2000B786F /* RefreshTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 04EE082E1D2CFCE2000B786F /* RefreshTool.m */; };
 		04EE08321D2CFCE2000B786F /* ZZCarouselControl.m in Sources */ = {isa = PBXBuildFile; fileRef = 04EE08301D2CFCE2000B786F /* ZZCarouselControl.m */; };
 		04EE08391D2CFD39000B786F /* ZCommentsModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 04EE08341D2CFD39000B786F /* ZCommentsModel.m */; };
 		04EE083A1D2CFD39000B786F /* ZCompontentModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 04EE08361D2CFD39000B786F /* ZCompontentModel.m */; };
 		04EE083B1D2CFD39000B786F /* ZUserModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 04EE08381D2CFD39000B786F /* ZUserModel.m */; };
+		04EE084B1D2D3F21000B786F /* FMDatabase.m in Sources */ = {isa = PBXBuildFile; fileRef = 04EE08411D2D3F21000B786F /* FMDatabase.m */; };
+		04EE084C1D2D3F21000B786F /* FMDatabaseAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 04EE08431D2D3F21000B786F /* FMDatabaseAdditions.m */; };
+		04EE084D1D2D3F21000B786F /* FMDatabasePool.m in Sources */ = {isa = PBXBuildFile; fileRef = 04EE08451D2D3F21000B786F /* FMDatabasePool.m */; };
+		04EE084E1D2D3F21000B786F /* FMDatabaseQueue.m in Sources */ = {isa = PBXBuildFile; fileRef = 04EE08471D2D3F21000B786F /* FMDatabaseQueue.m */; };
+		04EE084F1D2D3F21000B786F /* FMResultSet.m in Sources */ = {isa = PBXBuildFile; fileRef = 04EE084A1D2D3F21000B786F /* FMResultSet.m */; };
+		04EE08521D2D3F5A000B786F /* SQLSaveAndReadTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 04EE08511D2D3F5A000B786F /* SQLSaveAndReadTool.m */; };
+		04EE08541D2D4263000B786F /* libsqlite3.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 04EE08531D2D4263000B786F /* libsqlite3.tbd */; };
 		B79CCF7DC75746F7E97810DA /* Pods_StarWardrobee.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B4AE17AE395FEB658A044F08 /* Pods_StarWardrobee.framework */; };
 /* End PBXBuildFile section */
 
@@ -2855,8 +2861,6 @@
 		04EE08251D2CFB52000B786F /* LoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
 		04EE08271D2CFC2A000B786F /* CommuityTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommuityTableViewCell.h; sourceTree = "<group>"; };
 		04EE08281D2CFC2A000B786F /* CommuityTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommuityTableViewCell.m; sourceTree = "<group>"; };
-		04EE08291D2CFC2A000B786F /* ZTabBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZTabBar.h; sourceTree = "<group>"; };
-		04EE082A1D2CFC2A000B786F /* ZTabBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZTabBar.m; sourceTree = "<group>"; };
 		04EE082D1D2CFCE2000B786F /* RefreshTool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RefreshTool.h; sourceTree = "<group>"; };
 		04EE082E1D2CFCE2000B786F /* RefreshTool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RefreshTool.m; sourceTree = "<group>"; };
 		04EE082F1D2CFCE2000B786F /* ZZCarouselControl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZZCarouselControl.h; sourceTree = "<group>"; };
@@ -2867,6 +2871,20 @@
 		04EE08361D2CFD39000B786F /* ZCompontentModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZCompontentModel.m; sourceTree = "<group>"; };
 		04EE08371D2CFD39000B786F /* ZUserModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZUserModel.h; sourceTree = "<group>"; };
 		04EE08381D2CFD39000B786F /* ZUserModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZUserModel.m; sourceTree = "<group>"; };
+		04EE08401D2D3F21000B786F /* FMDatabase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FMDatabase.h; sourceTree = "<group>"; };
+		04EE08411D2D3F21000B786F /* FMDatabase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FMDatabase.m; sourceTree = "<group>"; };
+		04EE08421D2D3F21000B786F /* FMDatabaseAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FMDatabaseAdditions.h; sourceTree = "<group>"; };
+		04EE08431D2D3F21000B786F /* FMDatabaseAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FMDatabaseAdditions.m; sourceTree = "<group>"; };
+		04EE08441D2D3F21000B786F /* FMDatabasePool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FMDatabasePool.h; sourceTree = "<group>"; };
+		04EE08451D2D3F21000B786F /* FMDatabasePool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FMDatabasePool.m; sourceTree = "<group>"; };
+		04EE08461D2D3F21000B786F /* FMDatabaseQueue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FMDatabaseQueue.h; sourceTree = "<group>"; };
+		04EE08471D2D3F21000B786F /* FMDatabaseQueue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FMDatabaseQueue.m; sourceTree = "<group>"; };
+		04EE08481D2D3F21000B786F /* FMDB.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FMDB.h; sourceTree = "<group>"; };
+		04EE08491D2D3F21000B786F /* FMResultSet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FMResultSet.h; sourceTree = "<group>"; };
+		04EE084A1D2D3F21000B786F /* FMResultSet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FMResultSet.m; sourceTree = "<group>"; };
+		04EE08501D2D3F5A000B786F /* SQLSaveAndReadTool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SQLSaveAndReadTool.h; sourceTree = "<group>"; };
+		04EE08511D2D3F5A000B786F /* SQLSaveAndReadTool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SQLSaveAndReadTool.m; sourceTree = "<group>"; };
+		04EE08531D2D4263000B786F /* libsqlite3.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.tbd; path = usr/lib/libsqlite3.tbd; sourceTree = SDKROOT; };
 		B4AE17AE395FEB658A044F08 /* Pods_StarWardrobee.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_StarWardrobee.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D56EE1B5F5F341FF1A1EFBB3 /* Pods-StarWardrobee.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-StarWardrobee.release.xcconfig"; path = "Pods/Target Support Files/Pods-StarWardrobee/Pods-StarWardrobee.release.xcconfig"; sourceTree = "<group>"; };
 		D61F6A0E7707DCB7D4A73FC3 /* Pods-StarWardrobee.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-StarWardrobee.debug.xcconfig"; path = "Pods/Target Support Files/Pods-StarWardrobee/Pods-StarWardrobee.debug.xcconfig"; sourceTree = "<group>"; };
@@ -2877,6 +2895,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				04EE08541D2D4263000B786F /* libsqlite3.tbd in Frameworks */,
 				B79CCF7DC75746F7E97810DA /* Pods_StarWardrobee.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -2998,6 +3017,8 @@
 			children = (
 				044440F11D27ECF100C53BCD /* CHTTPAsk.h */,
 				044440F21D27ECF100C53BCD /* CHTTPAsk.m */,
+				04EE08501D2D3F5A000B786F /* SQLSaveAndReadTool.h */,
+				04EE08511D2D3F5A000B786F /* SQLSaveAndReadTool.m */,
 			);
 			path = CTool;
 			sourceTree = "<group>";
@@ -3029,6 +3050,7 @@
 		04E796991D28C64A0023C55A /* Resource */ = {
 			isa = PBXGroup;
 			children = (
+				04EE083F1D2D3F21000B786F /* fmdb */,
 				04E7969A1D28C64A0023C55A /* img */,
 			);
 			path = Resource;
@@ -4468,8 +4490,6 @@
 				04EAD2091D28B26D00F844D7 /* ShopTableViewCell.xib */,
 				04EE08271D2CFC2A000B786F /* CommuityTableViewCell.h */,
 				04EE08281D2CFC2A000B786F /* CommuityTableViewCell.m */,
-				04EE08291D2CFC2A000B786F /* ZTabBar.h */,
-				04EE082A1D2CFC2A000B786F /* ZTabBar.m */,
 			);
 			path = ZView;
 			sourceTree = "<group>";
@@ -4555,6 +4575,25 @@
 			path = ShopCarVC;
 			sourceTree = "<group>";
 		};
+		04EE083F1D2D3F21000B786F /* fmdb */ = {
+			isa = PBXGroup;
+			children = (
+				04EE08401D2D3F21000B786F /* FMDatabase.h */,
+				04EE08411D2D3F21000B786F /* FMDatabase.m */,
+				04EE08421D2D3F21000B786F /* FMDatabaseAdditions.h */,
+				04EE08431D2D3F21000B786F /* FMDatabaseAdditions.m */,
+				04EE08441D2D3F21000B786F /* FMDatabasePool.h */,
+				04EE08451D2D3F21000B786F /* FMDatabasePool.m */,
+				04EE08461D2D3F21000B786F /* FMDatabaseQueue.h */,
+				04EE08471D2D3F21000B786F /* FMDatabaseQueue.m */,
+				04EE08481D2D3F21000B786F /* FMDB.h */,
+				04EE08491D2D3F21000B786F /* FMResultSet.h */,
+				04EE084A1D2D3F21000B786F /* FMResultSet.m */,
+			);
+			name = fmdb;
+			path = img/fmdb;
+			sourceTree = "<group>";
+		};
 		B2B55DBD99588721D9FCE6B6 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
@@ -4567,6 +4606,7 @@
 		B678B426BCBC4E432D562FBC /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				04EE08531D2D4263000B786F /* libsqlite3.tbd */,
 				B4AE17AE395FEB658A044F08 /* Pods_StarWardrobee.framework */,
 			);
 			name = Frameworks;
@@ -6064,11 +6104,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				04EE082C1D2CFC2A000B786F /* ZTabBar.m in Sources */,
 				04EE08321D2CFCE2000B786F /* ZZCarouselControl.m in Sources */,
 				0432B9291D2C062D000C80CD /* MatchContexViewController.m in Sources */,
+				04EE084B1D2D3F21000B786F /* FMDatabase.m in Sources */,
 				044440931D27C8C000C53BCD /* AppDelegate.m in Sources */,
 				04E7A1511D28F68D0023C55A /* CMainHeaderModel.m in Sources */,
+				04EE08521D2D3F5A000B786F /* SQLSaveAndReadTool.m in Sources */,
+				04EE084C1D2D3F21000B786F /* FMDatabaseAdditions.m in Sources */,
 				044440F01D27ECDC00C53BCD /* ZHTTPManager.m in Sources */,
 				04EE082B1D2CFC2A000B786F /* CommuityTableViewCell.m in Sources */,
 				04EE08261D2CFB52000B786F /* LoginViewController.m in Sources */,
@@ -6076,13 +6118,16 @@
 				04EE083A1D2CFD39000B786F /* ZCompontentModel.m in Sources */,
 				04EAD2051D28B25900F844D7 /* MainFootTableViewCell.m in Sources */,
 				04EE083B1D2CFD39000B786F /* ZUserModel.m in Sources */,
+				04EE084F1D2D3F21000B786F /* FMResultSet.m in Sources */,
 				04EAD2221D28BD2F00F844D7 /* ManViewController.m in Sources */,
 				04EAD2191D28BD0300F844D7 /* CommunityViewController.m in Sources */,
 				04EAD21F1D28BD1C00F844D7 /* MainViewController.m in Sources */,
+				04EE084E1D2D3F21000B786F /* FMDatabaseQueue.m in Sources */,
 				04EE08311D2CFCE2000B786F /* RefreshTool.m in Sources */,
 				04E7A1571D29352A0023C55A /* CMainInternationModel.m in Sources */,
 				04E796971D28C5B00023C55A /* NetRequestClass.m in Sources */,
 				04EAD2161D28B32400F844D7 /* PreferenceViewController.m in Sources */,
+				04EE084D1D2D3F21000B786F /* FMDatabasePool.m in Sources */,
 				04EAD21C1D28BD1200F844D7 /* GuideViewController.m in Sources */,
 				04EAD2281D28BD4E00F844D7 /* ShopViewController.m in Sources */,
 				042773DC1D29F37100028A5F /* CMainWaterFallModel.m in Sources */,

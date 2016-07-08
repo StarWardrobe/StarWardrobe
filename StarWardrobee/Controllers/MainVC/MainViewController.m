@@ -65,11 +65,29 @@ typedef enum : NSUInteger {
     [self createTopScrollView];
     [self createTimeLimit];
     [self createInternationView];
-    
+    [self createBringToTop];
     [self createTableViewFall];
 
     [self getWaterFallDataWith:0];
    
+}
+- (void)createBringToTop {
+    UIView *view = [[UIView alloc]initWithFrame:CGRectMake(0, 0, 200, 40)];
+    UISearchBar * bar = [[UISearchBar alloc]initWithFrame:view.frame];
+    [view addSubview:bar];
+    self.navigationItem.titleView = view;
+    UIButton *layerToTop = [UIButton buttonWithType:UIButtonTypeCustom];
+    [layerToTop addTarget:self action:@selector(ToTop) forControlEvents:UIControlEventTouchUpInside];
+    [layerToTop setBackgroundImage:[UIImage imageNamed:@"icon_pull_share_black@2x"] forState:UIControlStateNormal];
+    layerToTop.frame = CGRectMake(kMainBoundsW-55, kMainBoundsH-150, 30, 30);
+    layerToTop.layer.cornerRadius = 10;
+    layerToTop.clipsToBounds = YES;
+    [layerToTop setBackgroundColor:[UIColor yellowColor]];
+    [self.view addSubview:layerToTop];
+}
+//跳往首部
+- (void)ToTop {
+    mainScreenScroll.contentOffset = CGPointMake(0, -64);
 }
 - (void)messag {
     NSLog(@"消息");
@@ -106,7 +124,6 @@ typedef enum : NSUInteger {
             [timeLimtImageView sd_setImageWithURL:arr[i]];
             [mainScreenScroll addSubview:timeLimtImageView];
         }
-        
     }];
     _colHeight[0] += 260;
     _colHeight[1] += 260;
@@ -167,10 +184,11 @@ typedef enum : NSUInteger {
     NSArray *arr = @[@"今日上新",@"上装",@"裙装",@"裤装"];
     buttonView = [UIView new];
     buttonView.frame = CGRectMake(0, NewHeight, kMainBoundsW, 50);
+    buttonView.backgroundColor = [UIColor whiteColor];
     [mainScreenScroll addSubview:buttonView];
     for (int i = 0; i<4; i++) {
         UIButton *button = [UIButton buttonWithType:UIButtonTypeSystem];
-        button.frame = CGRectMake(kMainBoundsW/4*i, 0, kMainBoundsW/4, 50);
+        button.frame = CGRectMake(kMainBoundsW/4*i, 0, kMainBoundsW/4, 45);
         [button setTitle:arr[i] forState:UIControlStateNormal];
         [button setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
         [button setTitleColor:[UIColor redColor] forState:UIControlStateSelected];
@@ -178,9 +196,9 @@ typedef enum : NSUInteger {
         [button addTarget:self action:@selector(chooseColoseSys:) forControlEvents:UIControlEventTouchUpInside];
         [buttonView addSubview:button];
     }
-    labe = [[UILabel alloc]initWithFrame:CGRectMake(0, NewHeight+50, kMainBoundsW/4, 3)];
+    labe = [[UILabel alloc]initWithFrame:CGRectMake(0, 45, kMainBoundsW/4, 3)];
     labe.backgroundColor = [UIColor redColor];
-    [mainScreenScroll addSubview:labe];
+    [buttonView addSubview:labe];
     for (int i=0; i<2; i++) {
         UITableView *table = [[UITableView alloc]initWithFrame:CGRectMake(i*(kMainBoundsW/2), NewHeight+55+64, kMainBoundsW/2, kMainBoundsH-55-64) style:UITableViewStylePlain];
         table.backgroundColor = [UIColor redColor];
@@ -198,12 +216,15 @@ typedef enum : NSUInteger {
 }
 //button点击事件
 - (void)chooseColoseSys :(UIButton *)sender {
-    
+    UITableView *left = (UITableView *)[mainScreenScroll viewWithTag:TableViewLeft];
+    UITableView *right = (UITableView *)[mainScreenScroll viewWithTag:TableViewRight];
+    left.contentOffset = CGPointMake(0, -50);
+    right.contentOffset = CGPointMake(0, -50);
+    mainScreenScroll.contentOffset = CGPointMake(0, NewHeight-50);
     [UIView animateWithDuration:0.3 animations:^{
-    labe.center = CGPointMake(sender.center.x, NewHeight+51);
+    labe.center = CGPointMake(sender.center.x, 46);
     } completion:^(BOOL finished) {
         [self getWaterFallDataWith:sender.tag-buttonTag];
-        
     }];
 }
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
@@ -236,9 +257,7 @@ typedef enum : NSUInteger {
         CMainWaterFallModel *model = self.dataArray[[num integerValue]];
         cell.model = model;
     }
-    
     return cell;
-   
 }
 
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView {
@@ -247,19 +266,15 @@ typedef enum : NSUInteger {
         //找两个表
         UITableView *left = (UITableView *)[mainScreenScroll viewWithTag:TableViewLeft];
         UITableView *right = (UITableView *)[mainScreenScroll viewWithTag:TableViewRight];
-        if (scrollView.contentOffset.y < NewHeight-64-55) {
+        if (scrollView.contentOffset.y < NewHeight-59) {
             buttonView.center = CGPointMake(kMainBoundsW/2, NewHeight+25);
             left.frame = CGRectMake(0, NewHeight+55, kMainBoundsW / 2 , kMainBoundsH);
             right.frame = CGRectMake(kMainBoundsW / 2, NewHeight+55, kMainBoundsW / 2 , kMainBoundsH);
             left.contentOffset = CGPointMake(0, 0);
             right.contentOffset = CGPointMake(0, 0);
         }else {
-            
-            
-            buttonView.center = CGPointMake(kMainBoundsW/2, scrollView.contentOffset.y+25);
-            
+            buttonView.center = CGPointMake(kMainBoundsW/2, scrollView.contentOffset.y+88);
             [mainScreenScroll bringSubviewToFront:buttonView];
-            
             left.center = CGPointMake(left.center.x, scrollView.contentOffset.y+kMainBoundsH/2+55);
             right.center = CGPointMake(right.center.x, scrollView.contentOffset.y+kMainBoundsH/2+55);
             CGPoint offset = scrollView.contentOffset;

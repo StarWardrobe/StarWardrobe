@@ -78,7 +78,7 @@
     
         if (model.picUrl) {
             _imageView.frame = CGRectMake(5, 5, kMainBoundsW/2-10, model.cellHeight);
-            [_imageView sd_setImageWithURL:[NSURL URLWithString:model.picUrl]];
+            [_imageView sd_setImageWithURL:[NSURL URLWithString:model.picUrl]placeholderImage:[UIImage imageNamed:@"mascot_1"]];
         }
         if (model.title) {
             _title.frame = CGRectMake(5, model.cellHeight+15,kMainBoundsW/2-10, 10);
@@ -92,7 +92,7 @@
         }
         if (model.countryPicUrl) {
             _countryImage.frame = CGRectMake(5, model.cellHeight+5, 10, 10);
-            [_countryImage sd_setImageWithURL:[NSURL URLWithString:model.countryPicUrl]];
+            [_countryImage sd_setImageWithURL:[NSURL URLWithString:model.countryPicUrl]placeholderImage:[UIImage imageNamed:@"mascot_1"]];
         }
         if (model.OldPrice) {
             _oldPriceLabel.frame = CGRectMake(110, model.cellHeight+25, 100, 20);

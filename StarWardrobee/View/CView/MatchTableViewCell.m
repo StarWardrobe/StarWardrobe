@@ -76,7 +76,7 @@
     
     if (model.PicUrl) {
         _imageView.frame = CGRectMake(5, 5, kMainBoundsW/2-10, model.cellHeight);
-        [_imageView sd_setImageWithURL:[NSURL URLWithString:model.PicUrl]];
+        [_imageView sd_setImageWithURL:[NSURL URLWithString:model.PicUrl] placeholderImage:[UIImage imageNamed:@"mascot_2"]];
     }
     if (model.Description) {
         _titleabel.frame = CGRectMake(5, model.cellHeight+5,kMainBoundsW/2-10, 20);

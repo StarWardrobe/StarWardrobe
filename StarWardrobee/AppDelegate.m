@@ -27,6 +27,9 @@ typedef void(^block)(void);
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
+    [SQLSaveAndReadTool createSQLSave];
+    
+    
     
     self.window = [[UIWindow alloc]initWithFrame:kMainBounds];
     self.window.backgroundColor = [UIColor whiteColor];
@@ -82,19 +85,20 @@ typedef void(^block)(void);
     
     return YES;
 }
-//代理方法,这个方法是来判断当点击某个tabBarItem时是否要点击下去,
-- (BOOL)tabBarController:(UITabBarController *)tabBarController shouldSelectViewController:(UIViewController *)viewController {
-    UINavigationController *nav = (UINavigationController *)viewController;
-    if ([[nav.viewControllers objectAtIndex:0] isKindOfClass:[ShopViewController class]]) {
-        //可以判断是否登录
-        LoginViewController *vc =[LoginViewController new];
-        
-        [self.window.rootViewController presentViewController:vc animated:YES completion:nil];
-        return NO;
-    }
-    return YES;
-    
-}
+
+////代理方法,这个方法是来判断当点击某个tabBarItem时是否要点击下去,
+//- (BOOL)tabBarController:(UITabBarController *)tabBarController shouldSelectViewController:(UIViewController *)viewController {
+//    UINavigationController *nav = (UINavigationController *)viewController;
+//    if ([[nav.viewControllers objectAtIndex:0] isKindOfClass:[ShopViewController class]]) {
+//        //可以判断是否登录
+//        LoginViewController *vc =[LoginViewController new];
+//        
+//        [self.window.rootViewController presentViewController:vc animated:YES completion:nil];
+//        return NO;
+//    }
+//    return YES;
+//    
+//}
 
 - (void)applicationWillResignActive:(UIApplication *)application {
     // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.

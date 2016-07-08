@@ -19,7 +19,7 @@
     
     UIButton *_commentBtn;
     UIButton *_shareBtn;
-
+    
 }
 @end
 
@@ -78,21 +78,21 @@
    
     if (model.pics) {
          NSMutableArray *picArr =model.pics;
-        _picScrollView.frame = CGRectMake(0, 0, CellWidth, 200);
-        _picScrollView.contentSize = CGSizeMake(kMainBoundsW*picArr.count, 200);
+        _picScrollView.frame = CGRectMake(0, 0, CellWidth, 300);
+        _picScrollView.contentSize = CGSizeMake(kMainBoundsW*picArr.count, 300);
         
         for (int i=0; i<picArr.count; i++) {
-            UIImageView *imageView =[[UIImageView alloc]initWithFrame:CGRectMake(CellWidth*i, 0, CellWidth, 200)];
-            [imageView sd_setImageWithURL:[NSURL URLWithString:picArr[i]]];
+            UIImageView *imageView =[[UIImageView alloc]initWithFrame:CGRectMake(CellWidth*i, 0, CellWidth, 300)];
+            [imageView sd_setImageWithURL:[NSURL URLWithString:picArr[i]]placeholderImage:[UIImage imageNamed:@"mascot_1"]];
             [_picScrollView addSubview:imageView];
         }
 
     }
     //topScrollView
     if (model.content) {
-        _contentLabel.frame = CGRectMake(0, 200, CellWidth, 60);
+        _contentLabel.frame = CGRectMake(0, 300, CellWidth, 60);
         _contentLabel.text = model.content;
-         _linkLabel.frame = CGRectMake(0, 260, CellWidth, 15);
+         _linkLabel.frame = CGRectMake(0, 360, CellWidth, 15);
         _linkLabel.text = model.content;
     }
     if (model.tags) {
@@ -108,13 +108,13 @@
             }
         }
         
-        _tagsLabel.frame=CGRectMake(39, 275, kMainBoundsW, 20);
+        _tagsLabel.frame=CGRectMake(39, 375, kMainBoundsW, 20);
         _tagsLabel.text =str;
     }
     
     if (model.comments) {
         NSMutableArray *commentArr = model.comments;
-        _commentLabel.frame =CGRectMake(0, 295, kMainBoundsW, 40);
+        _commentLabel.frame =CGRectMake(0, 395, kMainBoundsW, 40);
 
         for (int i=0; i<commentArr.count; i++) {
             ZCommentsModel *comModel = commentArr[i];
@@ -127,9 +127,9 @@
 
     }
     
-    _commentBtn.frame = CGRectMake(0, 335,CellWidth/2, 30);
+    _commentBtn.frame = CGRectMake(0, 435,CellWidth/2, 30);
     [_commentBtn setTitle:[NSString stringWithFormat:@"评论：%ld",model.commentCount] forState:UIControlStateNormal];
-    _shareBtn.frame = CGRectMake(CellWidth/2, 335, CellWidth/2, 30);
+    _shareBtn.frame = CGRectMake(CellWidth/2, 435, CellWidth/2, 30);
    
 }
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {

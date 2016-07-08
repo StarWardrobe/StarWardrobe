@@ -19,7 +19,8 @@ static NSString *cellID = @"cell";
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    [self presentViewController:[LoginViewController new] animated:YES completion:nil];
+    
+    //[self presentViewController:[LoginViewController new] animated:YES completion:nil];
     self.view.backgroundColor = [UIColor lightGrayColor];
     
     

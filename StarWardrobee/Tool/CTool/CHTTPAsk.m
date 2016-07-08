@@ -11,6 +11,7 @@
 #import "CMainWaterFallModel.h"
 #import "CMatchCellModel.h"
 #import "PersonModel.h"
+#import "ZCompontentModel.h"
 
 @implementation CHTTPAsk
 + (void)netHTTPForMainTopScrollArray:(void(^)(NSArray *arr))block {
@@ -153,7 +154,8 @@
 
 + (void)netHTTPForMatchScrollViewCellWith:(NSString *)str GetArray:(void(^)(NSMutableArray *arr))block {
     NSMutableArray *array = [NSMutableArray array];
-    NSString *EcodeStr = [str stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+//    NSString *EcodeStr = [str stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+    NSString *EcodeStr = [str stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLFragmentAllowedCharacterSet]];
     NSString *UrlStr =[NSString stringWithFormat:@"http://api-v2.mall.hichao.com/star/list?category=%@&lts=&pin=&flag=&gc=appstore&gf=iphone&gn=mxyc_ip&gv=6.6.3&gi=DA51E858-FC0D-4ACA-94C8-EC43CA9AC969&gs=640x1136&gos=8.4&access_token=",EcodeStr];
     AFHTTPRequestOperationManager *manage = [AFHTTPRequestOperationManager manager];
     manage.responseSerializer = [AFHTTPResponseSerializer serializer];
@@ -238,9 +240,61 @@
         NSLog(@"????????%@",responseObject);
     }];
 }
++ (void)netHTTPForCommunityWithIndex:(NSInteger)number GetBlock:(void(^)(NSMutableArray *arr))block {
+    NSMutableArray *array = [NSMutableArray array];
+    NSArray *nameArr = @[@"热门",@"关注",@"红人"];
+    NSArray *idArr = @[@"5",@"6",@"2"];
+    
+    [NetRequestClass netRequestGETWithRequestURL:@"http://api-v2.mall.hichao.com/forum/timeline?" WithParameter:@{@"nav_id":idArr[number],@"nav_name":nameArr[number],@"flag=":@"",@"user_id":@"",@"gc":@"appstore",@"gf":@"iphone",@"gn":@"mxyc_ip",@"gv":@"6.6",@"gi":@"DA51E858-FC0D-4ACA-94C8-EC43CA9AC969",@"gs":@"640x1136",@"gos":@"8.4",@"access_token":@""} WithReturnValeuBlock:^(id responseObject, NSError *error) {
+        NSDictionary *dataDic = responseObject[@"data"];
+        NSArray *itemsArr = dataDic[@"items"];
+        if (number == 0) {
+            for (NSDictionary *temp in itemsArr) {
+                NSDictionary *comDic =temp[@"component"];
+                ZCompontentModel *model =[ZCompontentModel ZCompontentModelWithDic:comDic];
+                [array addObject:model];
+            }
+        }else {
+            for (int i=0; i<itemsArr.count; i++) {
+                if (0==i) {
+                    NSDictionary *temp = itemsArr[0][@"component"];
+                    NSArray *foucusArr = temp[@"focus_users"];
+                    NSMutableArray *starArr = [NSMutableArray array];
+                    for (NSDictionary *t in foucusArr) {
+                        NSDictionary *commDic = t[@"component"];
+                        ZCompontentModel *model =  [ZCompontentModel ZCompontentModelWithDic:commDic];
+                        [starArr addObject:model];
+                    }
+                    [array addObject:starArr];
+                }else {
+                    NSDictionary *bigDic = itemsArr[i][@"component"];
+                    ZCompontentModel *BigModel =[ZCompontentModel ZCompontentModelWithDic:bigDic];
+                    [array addObject:BigModel];
+                }
+            }
+        }
+        if (block) {
+            block(array);
+        }
+    }];
+}
 
-
-
++ (void)netHTTPForHeaderCommunityWithBlock:(void(^)(NSMutableArray *arr))block {
+    NSMutableArray *array = [NSMutableArray array];
+    [NetRequestClass netRequestGETWithRequestURL:@"http://api-v2.mall.hichao.com/forum/banner?gc=appstore&gf=iphone&gn=mxyc_ip&gv=6.6.3&gi=DA51E858-FC0D-4ACA-94C8-EC43CA9AC969&gs=640x1136&gos=8.4&access_token=" WithParameter:nil WithReturnValeuBlock:^(id responseObject, NSError *error) {
+        
+        NSDictionary *dataDic = responseObject[@"data"];
+        NSArray *itemArr = dataDic[@"items"];
+        for (NSDictionary *temp in itemArr) {
+            NSDictionary *commpontDic =temp[@"component"];
+            NSString *picUrl = commpontDic[@"picUrl"];
+            [array addObject:picUrl];
+        }
+        if (block) {
+            block(array);
+        }
+    }];
+}
 
 
 
