@@ -87,7 +87,12 @@ typedef enum : NSUInteger {
 }
 //跳往首部
 - (void)ToTop {
-    mainScreenScroll.contentOffset = CGPointMake(0, -64);
+    [UIView animateWithDuration:0.5 animations:^{
+        mainScreenScroll.contentOffset = CGPointMake(0, -64);
+    } completion:^(BOOL finished) {
+        
+    }];
+    
 }
 - (void)messag {
     NSLog(@"消息");
