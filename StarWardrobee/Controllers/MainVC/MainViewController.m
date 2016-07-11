@@ -101,6 +101,7 @@ typedef enum : NSUInteger {
     NSLog(@"分类");
 }
 - (void)createTopScrollView {
+    
     [CHTTPAsk netHTTPForMainTopScrollArray:^(NSArray *arr) {
         UIScrollView *headerScrollView = [[UIScrollView alloc]init];
         headerScrollView.frame = CGRectMake(0, 0, kMainBoundsW, 250);

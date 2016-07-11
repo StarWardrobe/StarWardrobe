@@ -10,8 +10,8 @@
 
 @interface SQLSaveAndReadTool : NSObject
 + (void)createSQLSave;
-+ (void)createTableWithTableName:(NSString *)name AndArray:(NSMutableArray *)arr;
-+ (NSMutableArray *)QuaryTAbleWithName:(NSString *)name;
++ (void)createTableWithTableName:(NSString *)name WithIDTag:(NSInteger)number AndArray:(NSMutableArray *)arr;
++ (NSMutableArray *)QuaryTAbleWithName:(NSString *)name WithIDTag:(NSInteger)number;
 
 
 @end
